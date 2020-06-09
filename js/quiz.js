@@ -83,6 +83,7 @@ selectAnswer = (e) => {
 validateAnswer = () => {
     if(document.querySelector('.questions .active')) {
         // Everything si fine, checked the right answer
+        checkAnswer();
     } else {
         const errorDiv = document.createElement('div');
         errorDiv.classList.add('alert', 'alert-danger', 'col-md-6', 'text-center');
@@ -95,6 +96,16 @@ validateAnswer = () => {
             document.querySelector('.alert-danger').remove();
         }, 3000);
         
+    }
+}
+
+checkAnswer = () => {
+    const userAnswer = document.querySelector('.questions .active');
+
+    if(userAnswer.textContent === correctAnswer) {
+        console.log("That's correct");
+    } else {
+        console.log("No, that's not correct");
     }
 }
 
