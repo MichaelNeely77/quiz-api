@@ -46,6 +46,9 @@ displayQuestion = questions => {
             const answerHTML = document.createElement('li');
             answerHTML.classList.add('col-12', 'col-md-5');
             answerHTML.textContent = answer;
+
+            // Attach an event when an answer is clicked
+            answerHTML.onclick = selectAnswer;
             answerDiv.appendChild(answerHTML);
             
         });
@@ -57,3 +60,14 @@ displayQuestion = questions => {
     });
 }
 
+
+// When the answer is selected
+selectAnswer = (e) => {
+    // remobves previous active class
+    if(document.querySelector('.active')) {
+        const activeAnswer = document.querySelector('.active');
+        activeAnswer.classList.remove('active');
+    }
+
+    e.target.classList.add('active');
+}
