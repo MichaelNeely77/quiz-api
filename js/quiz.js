@@ -3,9 +3,13 @@ let correctAnswer;
 
 document.addEventListener('DOMContentLoaded', function() {
     loadQuestion();
+
+    eventListeners();
 });
 
-
+eventListeners = () => {
+    document.querySelector('#check-answer').addEventListener('click', validateAnswer)
+}
 
 // loads new question from API
 loadQuestion = () => {
@@ -69,5 +73,28 @@ selectAnswer = (e) => {
         activeAnswer.classList.remove('active');
     }
 
+
+
     e.target.classList.add('active');
 }
+
+
+// Check if the answer is correct and one answer is selected
+validateAnswer = () => {
+    if(document.querySelector('.questions .active')) {
+        // Everything si fine, checked the right answer
+    } else {
+        const errorDiv = document.createElement('div');
+        errorDiv.classList.add('alert', 'alert-danger', 'col-md-6', 'text-center');
+        errorDiv.textContent = 'Please select one answer';
+
+        const questionsDiv = document.querySelector('.questions');
+        questionsDiv.appendChild(errorDiv);
+
+        setTimeout(() => {
+            document.querySelector('.alert-danger').remove();
+        }, 3000);
+        
+    }
+}
+
